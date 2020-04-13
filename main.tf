@@ -1,36 +1,6 @@
 provider "aws" {
-  version = "~> 2.0"
+  # version = "~> 2.0"
   region  = "us-east-1"
-}
-
-resource "aws_iam_user" "user" {
-  name = "testAWSuserLG"
-  path = "/"
-}
-
-//aws iam add-user-to-group --user-name testAWSuserLG --group-name AdministratorAccess
-//aws iam remove-user-from-group --user-name testAWSuserLG --group-name AdministratorAccess
-
-/*
-resource "aws_iam_group_membership" "team" {
-  name = "tf-testing-group-membership"
-
-  users = [
-    "${aws_iam_user.user.name}",
-  ]
-
-  group = "${aws_iam_group.group.name}"
-}
-*/
-
-resource "aws_iam_user_group_membership" "team" {
-  user = "${aws_iam_user.user.name}"
-  groups = ["${aws_iam_group.group.name}"]
-}
-
-// terraform import aws_iam_group.group AdministratorAccess
-resource "aws_iam_group" "group" {
-  name = "AdministratorAccess"
 }
 
 resource "aws_vpc" "main" {
@@ -55,7 +25,7 @@ resource "aws_security_group" "allow_ssh" {
     description = "SSH from VPC"
     from_port   = 22
     to_port     = 22
-    protocol    = "ssh"
+    protocol    = "tcp"
     cidr_blocks = ["${aws_vpc.main.cidr_block}"]
   }
 }
@@ -64,7 +34,8 @@ resource "aws_route_table" "r" {
   vpc_id = "${aws_vpc.main.id}"
 
   route {
-    cidr_block = "10.0.1.0/24"
+    # cidr_block = "10.0.1.0/24"
+    cidr_block = "0.0.0.0/0" 
     gateway_id = "${aws_internet_gateway.gw.id}"
   }
 }

@@ -65,7 +65,7 @@ resource "aws_route_table" "r" {
 
   route {
     cidr_block = "10.0.1.0/24"
-    gateway_id = "${aws_internet_gateway.gw.vpc_id}"
+    gateway_id = "${aws_internet_gateway.gw.id}"
   }
 }
 
@@ -75,7 +75,7 @@ resource "aws_instance" "web" {
   ami           = "ami-039a49e70ea773ffc"
   instance_type = "t2.micro"
 
-  vpc_security_group_ids = ["${aws_security_group.allow_ssh.name}"]
+  vpc_security_group_ids = ["${aws_security_group.allow_ssh.id}"]
   subnet_id = "${aws_subnet.main.id}"
   
   # depends_on = ["${aws_internet_gateway.gw}"]

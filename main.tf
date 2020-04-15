@@ -48,7 +48,14 @@ resource "aws_instance" "web" {
 
   vpc_security_group_ids = ["${aws_security_group.allow_ssh.id}"]
   subnet_id = "${aws_subnet.main.id}"
-  
+
+  iam_instance_profile = "${aws_iam_instance_profile.test_profile.name}"
+	user_data = "${data.template_file.init.template}"
+
+  associate_public_ip_address = true
+  # key_name   = "${aws_key_pair.deployer.key_name}"
+  key_name   = "deployer-key2"
+
   # depends_on = ["${aws_internet_gateway.gw}"]
 }
 
@@ -67,3 +74,51 @@ resource "aws_s3_bucket" "endava-devops-intern-bg" {
   bucket = "endava-devops-intern-bg"
   acl    = "private"
 }
+
+data "template_file" "init" {
+  template = "${file("${path.module}/init.tpl")}"
+  vars = {
+    bucket_name = "${aws_s3_bucket.endava-devops-intern-bg.bucket}"
+  }
+}
+
+resource "aws_s3_bucket_object" "file_upload" {
+  bucket = "${aws_s3_bucket.endava-devops-intern-bg.bucket}"
+  key    = "my_bucket_key"
+  content = "${data.template_file.init.rendered}"
+}
+
+
+resource "aws_iam_role" "test_role" {
+  name = "test_role"
+
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "ec2.amazonaws.com"
+      },
+      "Effect": "Allow",
+      "Sid": ""
+    }
+  ]
+}
+EOF
+
+  tags = {
+    tag-key = "tag-value"
+  }
+}
+
+resource "aws_iam_instance_profile" "test_profile" {
+  name = "test_profile"
+  role = "${aws_iam_role.test_role.name}"
+}
+
+# resource "aws_key_pair" "deployer" {
+#   key_name   = "deployer-key"
+#   public_key = ""
+# }

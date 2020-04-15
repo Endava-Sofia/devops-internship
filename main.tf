@@ -34,8 +34,8 @@ resource "aws_route_table" "r" {
   vpc_id = "${aws_vpc.main.id}"
 
   route {
-    # cidr_block = "10.0.1.0/24"
-    cidr_block = "0.0.0.0/0" 
+    # cidr_block = "10.0.1.0/8"
+    cidr_block = "0.0.0.0/0"
     gateway_id = "${aws_internet_gateway.gw.id}"
   }
 }
@@ -50,4 +50,20 @@ resource "aws_instance" "web" {
   subnet_id = "${aws_subnet.main.id}"
   
   # depends_on = ["${aws_internet_gateway.gw}"]
+}
+
+resource "aws_route_table_association" "r-to-sub" {
+  subnet_id      = "${aws_subnet.main.id}"
+  route_table_id = "${aws_route_table.r.id}"
+}
+
+# resource "aws_route_table_association" "r-to-gw" {
+#   gateway_id     = "${aws_internet_gateway.gw.id}"
+#   route_table_id = "${aws_route_table.r.id}"
+# }
+
+
+resource "aws_s3_bucket" "endava-devops-intern-bg" {
+  bucket = "endava-devops-intern-bg"
+  acl    = "private"
 }

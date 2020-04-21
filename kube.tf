@@ -1,44 +1,24 @@
 provider "kubernetes" {
 }
+resource "kubernetes_pod" "nginx" {
+  metadata {
+    name = "nginx-example"
+    labels = {
+      App = "nginx"
+    }
+  }
 
-    # Error: timeout while waiting for state to become 'Running' (last state: 'Pending', timeout: 5m0s)
-    #    * nginx-example (Pod): FailedScheduling: no nodes available to schedule pods
+  spec {
+    container {
+      image = "nginx:1.7.8"
+      name  = "example"
 
-    #   on kube.tf line 4, in resource "kubernetes_pod" "nginx":
-    #    4: resource "kubernetes_pod" "nginx" {
-
-    # Error: timeout while waiting for state to become 'Running' (last state: 'Pending', timeout: 5m0s)
-    #  * nginx-example (Pod): FailedScheduling: no nodes available to schedule pods
-    #  * nginx-example (Pod): FailedScheduling: skip schedule deleting pod: default/nginx-example
-
-    # on kube.tf line 10, in resource "kubernetes_pod" "nginx":
-    # 10: resource "kubernetes_pod" "nginx" {
-
-# resource "kubernetes_pod" "nginx" {
-#   metadata {
-#     name = "nginx-example"
-#     labels = {
-#       App = "nginx"
-#     }
-#   }
-
-#   spec {
-#     container {
-#       image = "nginx:1.7.8"
-#       name  = "example"
-
-#       port {
-#         container_port = 80
-#       }
-#     }
-#   }
-# }
-
-
-    # Error: Waiting for rollout to finish: 0 of 2 updated replicas are available...
-
-    #   on kube.tf line 24, in resource "kubernetes_deployment" "nginx":
-    #   24: resource "kubernetes_deployment" "nginx" {
+      port {
+        container_port = 80
+      }
+    }
+  }
+}
 
 # resource "kubernetes_deployment" "nginx" {
 #   metadata {
@@ -103,27 +83,27 @@ provider "kubernetes" {
 #   }
 # }
 
-# resource "kubernetes_service" "nginx" {
-#   metadata {
-#     name = "nginx-example"
-#   }
-#   spec {
-#     selector = {
-#       App = kubernetes_pod.nginx.metadata[0].labels.App
-#     }
-#     port {
-#       port        = 80
-#       target_port = 80
-#     }
+resource "kubernetes_service" "nginx" {
+  metadata {
+    name = "nginx-example"
+  }
+  spec {
+    selector = {
+      App = kubernetes_pod.nginx.metadata[0].labels.App
+    }
+    port {
+      port        = 80
+      target_port = 80
+    }
 
-#     type = "LoadBalancer"
-#   }
-# }
+    type = "LoadBalancer"
+  }
+}
 
 # output "lb_ip" {
 #   value = kubernetes_service.nginx.load_balancer_ingress[0].ip
 # }
 
-# output "lb_hostname" {
-#   value = kubernetes_service.nginx.load_balancer_ingress[0].hostname
-# }
+output "lb_hostname" {
+  value = kubernetes_service.nginx.load_balancer_ingress[0].hostname
+}

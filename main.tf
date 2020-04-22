@@ -233,17 +233,6 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEKSServicePolicy" {
   role       = "${aws_iam_role.eks_role.name}"
 }
 
-
-# resource "aws_subnet" "third" {
-#   vpc_id     = "${aws_vpc.main.id}"
-#   cidr_block = "10.0.3.0/24"
-#   availability_zone = "us-east-1a"
-#   tags = {
-#     "kubernetes.io/cluster/${aws_eks_cluster.eks.name}" = "shared"
-#   }
-# }
-
-
 resource "aws_eks_node_group" "test-ng" {
   cluster_name    = aws_eks_cluster.eks.name
   node_group_name = "test-ng"
@@ -256,7 +245,7 @@ resource "aws_eks_node_group" "test-ng" {
     min_size     = 1
   }
 
-  instance_types = ["t2.micro"]
+  instance_types = ["m5.large"]
 
   # Ensure that IAM Role permissions are created before and deleted after EKS Node Group handling.
   # Otherwise, EKS will not be able to properly delete EC2 Instances and Elastic Network Interfaces.

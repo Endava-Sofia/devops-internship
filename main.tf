@@ -15,6 +15,7 @@ resource "aws_subnet" "main" {
   vpc_id     = "${aws_vpc.main.id}"
   cidr_block = "10.0.1.0/24"
   availability_zone = "us-east-1b"
+  map_public_ip_on_launch = true
   tags = {
     # "kubernetes.io/cluster/${aws_eks_cluster.eks.name}" = "shared"
     "kubernetes.io/cluster/eks" = "shared"
@@ -25,6 +26,7 @@ resource "aws_subnet" "second" {
   vpc_id     = "${aws_vpc.main.id}"
   cidr_block = "10.0.2.0/24"
   availability_zone = "us-east-1c"
+  map_public_ip_on_launch = true
   tags = {
     "kubernetes.io/cluster/eks" = "shared"
   }
@@ -73,7 +75,7 @@ resource "aws_instance" "web" {
 
   iam_instance_profile = "${aws_iam_instance_profile.test_profile.name}"
 	user_data = "${data.template_file.init.rendered}"
-
+  
   associate_public_ip_address = true
   # key_name   = "${aws_key_pair.deployer.key_name}"
   key_name   = "deployer-key2"
@@ -178,110 +180,3 @@ resource "aws_ecr_repository" "repo" {
   }
 }
 
-
-resource "aws_eks_cluster" "eks" {
-  name     = "eks"
-  role_arn = "${aws_iam_role.eks_role.arn}"
-
-  vpc_config {
-    subnet_ids = ["${aws_subnet.main.id}", "${aws_subnet.second.id}"]
-  }
-
-  # Ensure that IAM Role permissions are created before and deleted after EKS Cluster handling.
-  # Otherwise, EKS will not be able to properly delete EKS managed EC2 infrastructure such as Security Groups.
-  depends_on = [
-    aws_iam_role_policy_attachment.example-AmazonEKSClusterPolicy,
-    aws_iam_role_policy_attachment.example-AmazonEKSServicePolicy,
-  ]
-}
-
-# output "endpoint" {
-#   value = "${aws_eks_cluster.eks.endpoint}"
-# }
-
-# output "kubeconfig-certificate-authority-data" {
-#   value = "${aws_eks_cluster.eks.certificate_authority.0.data}"
-# }
-
-
-resource "aws_iam_role" "eks_role" {
-  name = "eks-cluster-role"
-
-  assume_role_policy = <<POLICY
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "eks.amazonaws.com"
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}
-POLICY
-}
-
-resource "aws_iam_role_policy_attachment" "example-AmazonEKSClusterPolicy" {
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
-  role       = "${aws_iam_role.eks_role.name}"
-}
-
-resource "aws_iam_role_policy_attachment" "example-AmazonEKSServicePolicy" {
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
-  role       = "${aws_iam_role.eks_role.name}"
-}
-
-resource "aws_eks_node_group" "test-ng" {
-  cluster_name    = aws_eks_cluster.eks.name
-  node_group_name = "test-ng"
-  node_role_arn   = aws_iam_role.ng-role.arn
-  subnet_ids = ["${aws_subnet.main.id}", "${aws_subnet.second.id}"]
-
-  scaling_config {
-    desired_size = 1
-    max_size     = 2
-    min_size     = 1
-  }
-
-  instance_types = ["m5.large"]
-
-  # Ensure that IAM Role permissions are created before and deleted after EKS Node Group handling.
-  # Otherwise, EKS will not be able to properly delete EC2 Instances and Elastic Network Interfaces.
-  depends_on = [
-    aws_iam_role_policy_attachment.example-AmazonEKSWorkerNodePolicy,
-    aws_iam_role_policy_attachment.example-AmazonEKS_CNI_Policy,
-    aws_iam_role_policy_attachment.example-AmazonEC2ContainerRegistryReadOnly,
-  ]
-}
-
-resource "aws_iam_role" "ng-role" {
-  name = "eks-node-group-test"
-
-  assume_role_policy = jsonencode({
-    Statement = [{
-      Action = "sts:AssumeRole"
-      Effect = "Allow"
-      Principal = {
-        Service = "ec2.amazonaws.com"
-      }
-    }]
-    Version = "2012-10-17"
-  })
-}
-
-resource "aws_iam_role_policy_attachment" "example-AmazonEKSWorkerNodePolicy" {
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
-  role       = aws_iam_role.ng-role.name
-}
-
-resource "aws_iam_role_policy_attachment" "example-AmazonEKS_CNI_Policy" {
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
-  role       = aws_iam_role.ng-role.name
-}
-
-resource "aws_iam_role_policy_attachment" "example-AmazonEC2ContainerRegistryReadOnly" {
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
-  role       = aws_iam_role.ng-role.name
-}

@@ -5,6 +5,9 @@
 *.tfstate
 *.tfstate.*
 
+**/.history/*
+**/untracked/*
+
 # Crash log files
 crash.log
 

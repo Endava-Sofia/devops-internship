@@ -1,0 +1,57 @@
+# ---
+#     kind: Service
+#     apiVersion: v1
+#     metadata:
+#       name: customer-care-service
+#     spec:
+#       selector:
+#         app: customercare
+#       ports:
+#         - protocol: "TCP"
+#           # Port accessible inside cluster
+#           port: 80
+#           # Port to forward to inside the pod
+#           targetPort: 5000
+#           # Port accessible outside cluster
+#           nodePort: 30002
+#       type: LoadBalancer
+
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer-care-deployment
+  labels:
+    app: customercare
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: customercare
+  template:
+    metadata:
+      labels:
+        app: customercare
+    spec:
+      containers:
+      - name: customer-care-pho
+        image: 555256523315.dkr.ecr.us-east-1.amazonaws.com/docker_repo:behemoth-v3
+        imagePullPolicy: Always
+        # env:
+        #   - name: ConnectionStrings__DefaultConnection
+        #     valueFrom:
+        #       secretKeyRef:
+        #         name: conn-str
+        #         key: conn-str-behemoth
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "500m"
+        ports:
+        - containerPort: 5000
+
+# REMOVE NGINX LB
+# ADD LOAD BALANCER
+# MAP PORT

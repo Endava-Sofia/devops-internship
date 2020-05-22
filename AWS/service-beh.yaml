@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb
+  creationTimestamp: "2020-05-04T10:03:51Z"
+  name: customer-care-service
+  namespace: behemoth
+  resourceVersion: "2266135"
+  selfLink: /api/v1/namespaces/behemoth/services/customer-care-service
+  uid: 72000338-4cee-474e-bcb4-44164e41546e
+spec:
+  clusterIP: 172.20.100.98
+  externalTrafficPolicy: Cluster
+  ports:
+    - nodePort: 31348
+      port: 80
+      protocol: TCP
+      targetPort: 5000
+  selector:
+    app: customercare
+  sessionAffinity: None
+  type: LoadBalancer

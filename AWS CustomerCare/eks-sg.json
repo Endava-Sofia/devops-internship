@@ -1,0 +1,164 @@
+{
+    "SecurityGroups": [
+        {
+            "Description": "EKS created security group applied to ENI that is attached to EKS Control Plane master nodes, as well as any managed workloads.",
+            "GroupName": "eks-cluster-sg-eks-100493",
+            "IpPermissions": [
+                {
+                    "FromPort": 1433,
+                    "IpProtocol": "tcp",
+                    "IpRanges": [
+                        {
+                            "CidrIp": "89.190.206.113/32"
+                        },
+                        {
+                            "CidrIp": "46.238.12.175/32"
+                        },
+                        {
+                            "CidrIp": "78.128.125.38/32"
+                        }
+                    ],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": [],
+                    "ToPort": 1433,
+                    "UserIdGroupPairs": []
+                },
+                {
+                    "IpProtocol": "-1",
+                    "IpRanges": [],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": [],
+                    "UserIdGroupPairs": [
+                        {
+                            "GroupId": "sg-065cbdc1bb60edc2c",
+                            "UserId": "555256523315"
+                        },
+                        {
+                            "GroupId": "sg-0c196b3dbb8f3694f",
+                            "UserId": "555256523315"
+                        },
+                        {
+                            "GroupId": "sg-0d3fd28b0a6e23d49",
+                            "UserId": "555256523315"
+                        },
+                        {
+                            "GroupId": "sg-0f57709798ff61c49",
+                            "UserId": "555256523315"
+                        }
+                    ]
+                },
+                {
+                    "FromPort": 5000,
+                    "IpProtocol": "tcp",
+                    "IpRanges": [
+                        {
+                            "CidrIp": "0.0.0.0/0"
+                        }
+                    ],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": [],
+                    "ToPort": 5000,
+                    "UserIdGroupPairs": []
+                },
+                {
+                    "FromPort": 31348,
+                    "IpProtocol": "tcp",
+                    "IpRanges": [
+                        {
+                            "CidrIp": "10.0.0.0/16",
+                            "Description": "kubernetes.io/rule/nlb/health=a125b8bc3cd1447598f486c473465a29"
+                        },
+                        {
+                            "CidrIp": "0.0.0.0/0",
+                            "Description": "kubernetes.io/rule/nlb/client=a125b8bc3cd1447598f486c473465a29"
+                        }
+                    ],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": [],
+                    "ToPort": 31348,
+                    "UserIdGroupPairs": []
+                },
+                {
+                    "FromPort": 3,
+                    "IpProtocol": "icmp",
+                    "IpRanges": [
+                        {
+                            "CidrIp": "0.0.0.0/0",
+                            "Description": "kubernetes.io/rule/nlb/mtu"
+                        }
+                    ],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": [],
+                    "ToPort": 4,
+                    "UserIdGroupPairs": []
+                },
+                {
+                    "FromPort": 31349,
+                    "IpProtocol": "tcp",
+                    "IpRanges": [
+                        {
+                            "CidrIp": "10.0.0.0/16",
+                            "Description": "kubernetes.io/rule/nlb/health=ab05df10ce83647a2ae407020dd27a54"
+                        },
+                        {
+                            "CidrIp": "0.0.0.0/0",
+                            "Description": "kubernetes.io/rule/nlb/client=ab05df10ce83647a2ae407020dd27a54"
+                        }
+                    ],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": [],
+                    "ToPort": 31349,
+                    "UserIdGroupPairs": []
+                },
+                {
+                    "FromPort": 31351,
+                    "IpProtocol": "tcp",
+                    "IpRanges": [
+                        {
+                            "CidrIp": "10.0.0.0/16",
+                            "Description": "kubernetes.io/rule/nlb/health=a60be93d7e335490ba7aea73bf7a61d3"
+                        },
+                        {
+                            "CidrIp": "0.0.0.0/0",
+                            "Description": "kubernetes.io/rule/nlb/client=a60be93d7e335490ba7aea73bf7a61d3"
+                        }
+                    ],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": [],
+                    "ToPort": 31351,
+                    "UserIdGroupPairs": []
+                }
+            ],
+            "OwnerId": "555256523315",
+            "GroupId": "sg-0c196b3dbb8f3694f",
+            "IpPermissionsEgress": [
+                {
+                    "IpProtocol": "-1",
+                    "IpRanges": [
+                        {
+                            "CidrIp": "0.0.0.0/0"
+                        }
+                    ],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": [],
+                    "UserIdGroupPairs": []
+                }
+            ],
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "eks-cluster-sg-eks-100493"
+                },
+                {
+                    "Key": "aws:eks:cluster-name",
+                    "Value": "eks"
+                },
+                {
+                    "Key": "kubernetes.io/cluster/eks",
+                    "Value": "owned"
+                }
+            ],
+            "VpcId": "vpc-0743861a5e167227d"
+        }
+    ]
+}

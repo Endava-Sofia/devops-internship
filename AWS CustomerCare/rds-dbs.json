@@ -1,0 +1,348 @@
+{
+    "DBInstances": [
+        {
+            "DBInstanceIdentifier": "behemoth-db",
+            "DBInstanceClass": "db.t2.micro",
+            "Engine": "sqlserver-ex",
+            "DBInstanceStatus": "available",
+            "MasterUsername": "admin",
+            "Endpoint": {
+                "Address": "behemoth-db.cczzcikblsnk.us-east-1.rds.amazonaws.com",
+                "Port": 1433,
+                "HostedZoneId": "Z2R2ITUGPM61AM"
+            },
+            "AllocatedStorage": 20,
+            "InstanceCreateTime": "2020-04-24T06:52:21.278000+00:00",
+            "PreferredBackupWindow": "09:18-09:48",
+            "BackupRetentionPeriod": 0,
+            "DBSecurityGroups": [],
+            "VpcSecurityGroups": [
+                {
+                    "VpcSecurityGroupId": "sg-0c196b3dbb8f3694f",
+                    "Status": "active"
+                },
+                {
+                    "VpcSecurityGroupId": "sg-0a4bcafd0ce0a44df",
+                    "Status": "active"
+                }
+            ],
+            "DBParameterGroups": [
+                {
+                    "DBParameterGroupName": "default.sqlserver-ex-14.0",
+                    "ParameterApplyStatus": "in-sync"
+                }
+            ],
+            "AvailabilityZone": "us-east-1b",
+            "DBSubnetGroup": {
+                "DBSubnetGroupName": "default-vpc-0743861a5e167227d",
+                "DBSubnetGroupDescription": "Created from the RDS Management Console",
+                "VpcId": "vpc-0743861a5e167227d",
+                "SubnetGroupStatus": "Complete",
+                "Subnets": [
+                    {
+                        "SubnetIdentifier": "subnet-0d83ade48a49aed68",
+                        "SubnetAvailabilityZone": {
+                            "Name": "us-east-1b"
+                        },
+                        "SubnetStatus": "Active"
+                    },
+                    {
+                        "SubnetIdentifier": "subnet-086f7d3984e356ba8",
+                        "SubnetAvailabilityZone": {
+                            "Name": "us-east-1c"
+                        },
+                        "SubnetStatus": "Active"
+                    }
+                ]
+            },
+            "PreferredMaintenanceWindow": "sun:10:30-sun:11:00",
+            "PendingModifiedValues": {},
+            "MultiAZ": false,
+            "EngineVersion": "14.00.3223.3.v1",
+            "AutoMinorVersionUpgrade": false,
+            "ReadReplicaDBInstanceIdentifiers": [],
+            "LicenseModel": "license-included",
+            "OptionGroupMemberships": [
+                {
+                    "OptionGroupName": "sqlrdsmanagement",
+                    "Status": "in-sync"
+                }
+            ],
+            "CharacterSetName": "SQL_Latin1_General_CP1_CI_AS",
+            "PubliclyAccessible": true,
+            "StorageType": "gp2",
+            "DbInstancePort": 0,
+            "StorageEncrypted": false,
+            "DbiResourceId": "db-XJKXYBSOXHR5UUJQ2D2IXJMMSY",
+            "CACertificateIdentifier": "rds-ca-2019",
+            "DomainMemberships": [],
+            "CopyTagsToSnapshot": true,
+            "MonitoringInterval": 60,
+            "EnhancedMonitoringResourceArn": "arn:aws:logs:us-east-1:555256523315:log-group:RDSOSMetrics:log-stream:db-XJKXYBSOXHR5UUJQ2D2IXJMMSY",
+            "MonitoringRoleArn": "arn:aws:iam::555256523315:role/rds-monitoring-role",
+            "DBInstanceArn": "arn:aws:rds:us-east-1:555256523315:db:behemoth-db",
+            "IAMDatabaseAuthenticationEnabled": false,
+            "PerformanceInsightsEnabled": false,
+            "EnabledCloudwatchLogsExports": [
+                "error"
+            ],
+            "DeletionProtection": false,
+            "AssociatedRoles": []
+        },
+        {
+            "DBInstanceIdentifier": "gryphon-db",
+            "DBInstanceClass": "db.t2.micro",
+            "Engine": "sqlserver-ex",
+            "DBInstanceStatus": "available",
+            "MasterUsername": "admin",
+            "Endpoint": {
+                "Address": "gryphon-db.cczzcikblsnk.us-east-1.rds.amazonaws.com",
+                "Port": 1433,
+                "HostedZoneId": "Z2R2ITUGPM61AM"
+            },
+            "AllocatedStorage": 20,
+            "InstanceCreateTime": "2020-04-24T06:45:31.701000+00:00",
+            "PreferredBackupWindow": "10:00-10:30",
+            "BackupRetentionPeriod": 7,
+            "DBSecurityGroups": [],
+            "VpcSecurityGroups": [
+                {
+                    "VpcSecurityGroupId": "sg-0c196b3dbb8f3694f",
+                    "Status": "active"
+                },
+                {
+                    "VpcSecurityGroupId": "sg-0a4bcafd0ce0a44df",
+                    "Status": "active"
+                }
+            ],
+            "DBParameterGroups": [
+                {
+                    "DBParameterGroupName": "default.sqlserver-ex-14.0",
+                    "ParameterApplyStatus": "in-sync"
+                }
+            ],
+            "AvailabilityZone": "us-east-1b",
+            "DBSubnetGroup": {
+                "DBSubnetGroupName": "default-vpc-0743861a5e167227d",
+                "DBSubnetGroupDescription": "Created from the RDS Management Console",
+                "VpcId": "vpc-0743861a5e167227d",
+                "SubnetGroupStatus": "Complete",
+                "Subnets": [
+                    {
+                        "SubnetIdentifier": "subnet-0d83ade48a49aed68",
+                        "SubnetAvailabilityZone": {
+                            "Name": "us-east-1b"
+                        },
+                        "SubnetStatus": "Active"
+                    },
+                    {
+                        "SubnetIdentifier": "subnet-086f7d3984e356ba8",
+                        "SubnetAvailabilityZone": {
+                            "Name": "us-east-1c"
+                        },
+                        "SubnetStatus": "Active"
+                    }
+                ]
+            },
+            "PreferredMaintenanceWindow": "thu:08:58-thu:09:28",
+            "PendingModifiedValues": {},
+            "LatestRestorableTime": "2020-05-27T10:27:02+00:00",
+            "MultiAZ": false,
+            "EngineVersion": "14.00.3223.3.v1",
+            "AutoMinorVersionUpgrade": false,
+            "ReadReplicaDBInstanceIdentifiers": [],
+            "LicenseModel": "license-included",
+            "OptionGroupMemberships": [
+                {
+                    "OptionGroupName": "sqlrdsmanagement",
+                    "Status": "in-sync"
+                }
+            ],
+            "CharacterSetName": "SQL_Latin1_General_CP1_CI_AS",
+            "PubliclyAccessible": true,
+            "StorageType": "gp2",
+            "DbInstancePort": 0,
+            "StorageEncrypted": false,
+            "DbiResourceId": "db-JWHNUNWTTLECKRWYZ2IV3ZYVOQ",
+            "CACertificateIdentifier": "rds-ca-2019",
+            "DomainMemberships": [],
+            "CopyTagsToSnapshot": true,
+            "MonitoringInterval": 0,
+            "DBInstanceArn": "arn:aws:rds:us-east-1:555256523315:db:gryphon-db",
+            "IAMDatabaseAuthenticationEnabled": false,
+            "PerformanceInsightsEnabled": true,
+            "PerformanceInsightsKMSKeyId": "arn:aws:kms:us-east-1:555256523315:key/48c6f5eb-9fa3-45f4-b9cd-5e4b9de9bb69",
+            "PerformanceInsightsRetentionPeriod": 7,
+            "DeletionProtection": false,
+            "AssociatedRoles": []
+        },
+        {
+            "DBInstanceIdentifier": "minotaur-db-change",
+            "DBInstanceClass": "db.t2.micro",
+            "Engine": "sqlserver-ex",
+            "DBInstanceStatus": "available",
+            "MasterUsername": "admin",
+            "Endpoint": {
+                "Address": "minotaur-db-change.cczzcikblsnk.us-east-1.rds.amazonaws.com",
+                "Port": 1433,
+                "HostedZoneId": "Z2R2ITUGPM61AM"
+            },
+            "AllocatedStorage": 20,
+            "InstanceCreateTime": "2020-04-24T06:51:01.767000+00:00",
+            "PreferredBackupWindow": "06:43-07:13",
+            "BackupRetentionPeriod": 0,
+            "DBSecurityGroups": [],
+            "VpcSecurityGroups": [
+                {
+                    "VpcSecurityGroupId": "sg-0c196b3dbb8f3694f",
+                    "Status": "active"
+                },
+                {
+                    "VpcSecurityGroupId": "sg-0a4bcafd0ce0a44df",
+                    "Status": "active"
+                }
+            ],
+            "DBParameterGroups": [
+                {
+                    "DBParameterGroupName": "default.sqlserver-ex-14.0",
+                    "ParameterApplyStatus": "in-sync"
+                }
+            ],
+            "AvailabilityZone": "us-east-1b",
+            "DBSubnetGroup": {
+                "DBSubnetGroupName": "default-vpc-0743861a5e167227d",
+                "DBSubnetGroupDescription": "Created from the RDS Management Console",
+                "VpcId": "vpc-0743861a5e167227d",
+                "SubnetGroupStatus": "Complete",
+                "Subnets": [
+                    {
+                        "SubnetIdentifier": "subnet-0d83ade48a49aed68",
+                        "SubnetAvailabilityZone": {
+                            "Name": "us-east-1b"
+                        },
+                        "SubnetStatus": "Active"
+                    },
+                    {
+                        "SubnetIdentifier": "subnet-086f7d3984e356ba8",
+                        "SubnetAvailabilityZone": {
+                            "Name": "us-east-1c"
+                        },
+                        "SubnetStatus": "Active"
+                    }
+                ]
+            },
+            "PreferredMaintenanceWindow": "mon:10:10-mon:10:40",
+            "PendingModifiedValues": {},
+            "MultiAZ": false,
+            "EngineVersion": "14.00.3223.3.v1",
+            "AutoMinorVersionUpgrade": false,
+            "ReadReplicaDBInstanceIdentifiers": [],
+            "LicenseModel": "license-included",
+            "OptionGroupMemberships": [
+                {
+                    "OptionGroupName": "sqlrdsmanagement",
+                    "Status": "in-sync"
+                }
+            ],
+            "CharacterSetName": "SQL_Latin1_General_CP1_CI_AS",
+            "PubliclyAccessible": true,
+            "StorageType": "gp2",
+            "DbInstancePort": 0,
+            "StorageEncrypted": false,
+            "DbiResourceId": "db-7JUDL4GECIM6NOYGPH45V2IDSI",
+            "CACertificateIdentifier": "rds-ca-2019",
+            "DomainMemberships": [],
+            "CopyTagsToSnapshot": true,
+            "MonitoringInterval": 0,
+            "DBInstanceArn": "arn:aws:rds:us-east-1:555256523315:db:minotaur-db-change",
+            "IAMDatabaseAuthenticationEnabled": false,
+            "PerformanceInsightsEnabled": false,
+            "DeletionProtection": false,
+            "AssociatedRoles": []
+        },
+        {
+            "DBInstanceIdentifier": "phoenix-db",
+            "DBInstanceClass": "db.t2.micro",
+            "Engine": "sqlserver-ex",
+            "DBInstanceStatus": "available",
+            "MasterUsername": "admin",
+            "Endpoint": {
+                "Address": "phoenix-db.cczzcikblsnk.us-east-1.rds.amazonaws.com",
+                "Port": 1433,
+                "HostedZoneId": "Z2R2ITUGPM61AM"
+            },
+            "AllocatedStorage": 20,
+            "InstanceCreateTime": "2020-04-24T06:58:39.619000+00:00",
+            "PreferredBackupWindow": "05:05-05:35",
+            "BackupRetentionPeriod": 0,
+            "DBSecurityGroups": [],
+            "VpcSecurityGroups": [
+                {
+                    "VpcSecurityGroupId": "sg-0c196b3dbb8f3694f",
+                    "Status": "active"
+                },
+                {
+                    "VpcSecurityGroupId": "sg-0a4bcafd0ce0a44df",
+                    "Status": "active"
+                }
+            ],
+            "DBParameterGroups": [
+                {
+                    "DBParameterGroupName": "default.sqlserver-ex-14.0",
+                    "ParameterApplyStatus": "in-sync"
+                }
+            ],
+            "AvailabilityZone": "us-east-1b",
+            "DBSubnetGroup": {
+                "DBSubnetGroupName": "default-vpc-0743861a5e167227d",
+                "DBSubnetGroupDescription": "Created from the RDS Management Console",
+                "VpcId": "vpc-0743861a5e167227d",
+                "SubnetGroupStatus": "Complete",
+                "Subnets": [
+                    {
+                        "SubnetIdentifier": "subnet-0d83ade48a49aed68",
+                        "SubnetAvailabilityZone": {
+                            "Name": "us-east-1b"
+                        },
+                        "SubnetStatus": "Active"
+                    },
+                    {
+                        "SubnetIdentifier": "subnet-086f7d3984e356ba8",
+                        "SubnetAvailabilityZone": {
+                            "Name": "us-east-1c"
+                        },
+                        "SubnetStatus": "Active"
+                    }
+                ]
+            },
+            "PreferredMaintenanceWindow": "thu:07:39-thu:08:09",
+            "PendingModifiedValues": {},
+            "MultiAZ": false,
+            "EngineVersion": "14.00.3223.3.v1",
+            "AutoMinorVersionUpgrade": false,
+            "ReadReplicaDBInstanceIdentifiers": [],
+            "LicenseModel": "license-included",
+            "OptionGroupMemberships": [
+                {
+                    "OptionGroupName": "sqlrdsmanagement",
+                    "Status": "in-sync"
+                }
+            ],
+            "CharacterSetName": "SQL_Latin1_General_CP1_CI_AS",
+            "PubliclyAccessible": true,
+            "StorageType": "gp2",
+            "DbInstancePort": 0,
+            "StorageEncrypted": false,
+            "DbiResourceId": "db-RXC6PEE46O7D2CRPIIQZBCA34I",
+            "CACertificateIdentifier": "rds-ca-2019",
+            "DomainMemberships": [],
+            "CopyTagsToSnapshot": true,
+            "MonitoringInterval": 0,
+            "DBInstanceArn": "arn:aws:rds:us-east-1:555256523315:db:phoenix-db",
+            "IAMDatabaseAuthenticationEnabled": false,
+            "PerformanceInsightsEnabled": false,
+            "DeletionProtection": false,
+            "AssociatedRoles": []
+        }
+    ]
+}

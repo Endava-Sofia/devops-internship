@@ -25,6 +25,7 @@ metadata:
   name: customer-care-deployment
   labels:
     app: customercare
+  namespace: behemoth
 spec:
   replicas: 1
   selector:
@@ -37,7 +38,7 @@ spec:
     spec:
       containers:
       - name: customer-care-beh
-        image: 555256523315.dkr.ecr.us-east-1.amazonaws.com/docker_repo:behemoth-v2
+        image: 555256523315.dkr.ecr.us-east-1.amazonaws.com/behemoth:latest
         imagePullPolicy: Always
         env:
           - name: ConnectionStrings__DefaultConnection

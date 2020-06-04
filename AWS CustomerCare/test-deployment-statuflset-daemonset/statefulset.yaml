@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: counter
-  replicas: 1 
+  replicas: 1
   template:
     metadata:
       labels:
@@ -25,7 +25,6 @@ spec:
     spec:
       accessModes: [ "ReadWriteOnce" ]
       # accessModes: [ "ReadWriteMany" ]
-      # storageClassName: efs
       storageClassName: slow
       resources:
         requests:

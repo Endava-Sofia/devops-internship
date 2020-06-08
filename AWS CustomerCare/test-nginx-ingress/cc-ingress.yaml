@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: customercare-ingress
+spec:
+  rules:
+  # - host: api.behemoth.endava-test-domain.be/
+  - host: behemoth-sf.s3-website-us-east-1.amazonaws.com
+    http:
+      paths:
+      - backend:
+          serviceName: customer-care-service-test
+          servicePort: 80
+  # - host: api.hydra.endava-test-domain.be/
+  - host: hydra-sf.s3-website-us-east-1.amazonaws.com
+    http:
+      paths:
+      - backend:
+          serviceName: customer-care-service
+          servicePort: 80

@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    meta.helm.sh/release-name: cc-nginx-ingress
+    meta.helm.sh/release-namespace: hydra
+  # creationTimestamp: "2020-06-08T10:03:50Z"
+  labels:
+    app.kubernetes.io/instance: cc-nginx-ingress
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: cc-nginx-ingress-nginx-ingress
+    helm.sh/chart: nginx-ingress-0.5.0
+  name: cc-nginx-ingress-nginx-ingress
+  namespace: hydra
+  # resourceVersion: "6718637"
+  # selfLink: /api/v1/namespaces/hydra/services/cc-nginx-ingress-nginx-ingress
+  # uid: 6e202e8a-0b9b-4de7-9042-0b9f101f6797
+spec:
+  # clusterIP: 172.20.141.125
+  # externalTrafficPolicy: Local
+  # healthCheckNodePort: 30134
+  ports:
+  - name: http
+    nodePort: 32671
+    port: 80
+    protocol: TCP
+    targetPort: 5000
+  # - name: https
+  #   nodePort: 30775
+  #   port: 443
+  #   protocol: TCP
+  #   targetPort: 443
+  selector:
+    app: cc-nginx-ingress-nginx-ingress
+  sessionAffinity: None
+  type: LoadBalancer
+# status:
+#   loadBalancer:
+#     ingress:
+#     - hostname: a6e202e8a0b9b4de790420b9f101f679-925313626.us-east-1.elb.amazonaws.com

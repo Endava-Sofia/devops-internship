@@ -4,6 +4,10 @@ metadata:
   name: customercare-ingress
   namespace: hydra
 spec:
+  tls:
+    - hosts:
+      - hydra.endava-test-domain.be
+      secretName: hydra-secret-tls
   rules:
   - host: api.hydra.endava-test-domain.be
     http:

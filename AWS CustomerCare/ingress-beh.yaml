@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: customercare-ingress
+  namespace: behemoth
+spec:
+  rules:
+  - host: api.behemoth.endava-test-domain.be
+    http:
+      paths:
+      - backend:
+          serviceName: customer-care-service
+          servicePort: 80
+  - host: stage.behemoth.endava-test-domain.be
+    http:
+      paths:
+      - backend:
+          serviceName: customer-care-service
+          servicePort: 80

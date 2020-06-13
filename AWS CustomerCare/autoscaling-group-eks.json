@@ -1,0 +1,102 @@
+{
+    "AutoScalingGroups": [
+        {
+            "AutoScalingGroupName": "eks-96b8e302-0cae-a3fc-02f8-94d28bfee157",
+            "AutoScalingGroupARN": "arn:aws:autoscaling:us-east-1:555256523315:autoScalingGroup:5482198b-0a23-4b6f-94b4-917fe1a89749:autoScalingGroupName/eks-96b8e302-0cae-a3fc-02f8-94d28bfee157",
+            "MixedInstancesPolicy": {
+                "LaunchTemplate": {
+                    "LaunchTemplateSpecification": {
+                        "LaunchTemplateId": "lt-09b3febcfd2e2a54e",
+                        "LaunchTemplateName": "eks-96b8e302-0cae-a3fc-02f8-94d28bfee157",
+                        "Version": "1"
+                    },
+                    "Overrides": [
+                        {
+                            "InstanceType": "m5.large"
+                        }
+                    ]
+                },
+                "InstancesDistribution": {
+                    "OnDemandAllocationStrategy": "prioritized",
+                    "OnDemandBaseCapacity": 0,
+                    "OnDemandPercentageAboveBaseCapacity": 0,
+                    "SpotAllocationStrategy": "capacity-optimized"
+                }
+            },
+            "MinSize": 0,
+            "MaxSize": 1,
+            "DesiredCapacity": 1,
+            "DefaultCooldown": 300,
+            "AvailabilityZones": [
+                "us-east-1b",
+                "us-east-1c"
+            ],
+            "LoadBalancerNames": [],
+            "TargetGroupARNs": [],
+            "HealthCheckType": "EC2",
+            "HealthCheckGracePeriod": 15,
+            "Instances": [
+                {
+                    "InstanceId": "i-01fb0b75c32b15ed5",
+                    "InstanceType": "m5.large",
+                    "AvailabilityZone": "us-east-1b",
+                    "LifecycleState": "InService",
+                    "HealthStatus": "Healthy",
+                    "LaunchTemplate": {
+                        "LaunchTemplateId": "lt-09b3febcfd2e2a54e",
+                        "LaunchTemplateName": "eks-96b8e302-0cae-a3fc-02f8-94d28bfee157",
+                        "Version": "1"
+                    },
+                    "ProtectedFromScaleIn": false
+                }
+            ],
+            "CreatedTime": "2020-04-29T12:58:48.538000+00:00",
+            "SuspendedProcesses": [],
+            "VPCZoneIdentifier": "subnet-086f7d3984e356ba8,subnet-0d83ade48a49aed68",
+            "EnabledMetrics": [],
+            "Tags": [
+                {
+                    "ResourceId": "eks-96b8e302-0cae-a3fc-02f8-94d28bfee157",
+                    "ResourceType": "auto-scaling-group",
+                    "Key": "eks:cluster-name",
+                    "Value": "eks",
+                    "PropagateAtLaunch": true
+                },
+                {
+                    "ResourceId": "eks-96b8e302-0cae-a3fc-02f8-94d28bfee157",
+                    "ResourceType": "auto-scaling-group",
+                    "Key": "eks:nodegroup-name",
+                    "Value": "test-ng",
+                    "PropagateAtLaunch": true
+                },
+                {
+                    "ResourceId": "eks-96b8e302-0cae-a3fc-02f8-94d28bfee157",
+                    "ResourceType": "auto-scaling-group",
+                    "Key": "k8s.io/cluster-autoscaler/eks",
+                    "Value": "owned",
+                    "PropagateAtLaunch": true
+                },
+                {
+                    "ResourceId": "eks-96b8e302-0cae-a3fc-02f8-94d28bfee157",
+                    "ResourceType": "auto-scaling-group",
+                    "Key": "k8s.io/cluster-autoscaler/enabled",
+                    "Value": "true",
+                    "PropagateAtLaunch": true
+                },
+                {
+                    "ResourceId": "eks-96b8e302-0cae-a3fc-02f8-94d28bfee157",
+                    "ResourceType": "auto-scaling-group",
+                    "Key": "kubernetes.io/cluster/eks",
+                    "Value": "owned",
+                    "PropagateAtLaunch": true
+                }
+            ],
+            "TerminationPolicies": [
+                "OldestLaunchTemplate",
+                "OldestInstance"
+            ],
+            "NewInstancesProtectedFromScaleIn": false,
+            "ServiceLinkedRoleARN": "arn:aws:iam::555256523315:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling"
+        }
+    ]
+}

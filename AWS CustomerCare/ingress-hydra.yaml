@@ -4,12 +4,18 @@ metadata:
   name: customercare-ingress
   namespace: hydra
 spec:
-  tls:
-    - hosts:
-      - hydra.endava-test-domain.be
-      secretName: hydra-secret-tls
+  # tls:
+  #   - hosts:
+  #     - hydra.endava-test-domain.be
+  #     secretName: hydra-secret-tls
   rules:
   - host: api.hydra.endava-test-domain.be
+    http:
+      paths:
+      - backend:
+          serviceName: customer-care-service
+          servicePort: 80
+  - host: api.stage.hydra.endava-test-domain.be
     http:
       paths:
       - backend:

@@ -2,28 +2,28 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: customercare-ingress
-  namespace: hydra
+  namespace: hydra-stage
   annotations:
     kubernetes.io/ingress.class: "nginx"    
-    cert-manager.io/issuer: "letsencrypt-prod"
+    cert-manager.io/issuer: "letsencrypt-staging"
   # annotations:
   #   api.stage.hydra.endava-test-domain.be/aws-load-balancer-ssl-cert: arn:aws:acm:us-east-1:555256523315:certificate/6e92c939-f50f-464d-b044-8daadae2f396
 spec:
   tls:
     - hosts:
-      - api.hydra.endava-test-domain.be
-      # - api.stage.hydra.endava-test-domain.be
+      # - api.hydra.endava-test-domain.be
+      - api.stage.hydra.endava-test-domain.be
       secretName: hydra-tls-secret-stage
   rules:
-  - host: api.hydra.endava-test-domain.be
-    http:
-      paths:
-      - backend:
-          serviceName: customer-care-service
-          servicePort: 80
-  # - host: api.stage.hydra.endava-test-domain.be
+  # - host: api.hydra.endava-test-domain.be
   #   http:
   #     paths:
   #     - backend:
   #         serviceName: customer-care-service
   #         servicePort: 80
+  - host: api.stage.hydra.endava-test-domain.be
+    http:
+      paths:
+      - backend:
+          serviceName: customer-care-service
+          servicePort: 80
